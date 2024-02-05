@@ -26,7 +26,7 @@ static void	free_all(char **buff)
 	free(buff);
 }
 
-static int	count_word(char const *s, char sep)
+int	ft_count_word(char const *s, char sep)
 {
 	int	i;
 	int	count;
@@ -99,7 +99,7 @@ char	**ft_split(char const *s, char sep)
 
 	if (!s)
 		return (NULL);
-	buff = (char **)malloc(sizeof(char *) * (count_word(s, sep) + 1));
+	buff = (char **)malloc(sizeof(char *) * (ft_count_word(s, sep) + 1));
 	if (!buff)
 		return (NULL);
 	buff = split_format(buff, s, sep);

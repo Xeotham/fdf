@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:38 by mhaouas           #+#    #+#             */
-/*   Updated: 2023/11/06 16:57:11 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/01/24 11:24:58 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int nb, int fd);
 char				**ft_split(char const *s, char sep);
+int					ft_count_word(char const *s, char sep);
+void				ft_free_2d_array(char **array);
+int					ft_atoi_base(char *base, char *to_convert);
+int					ft_abs(int to_check);
 
 /*=================== BONUS PART ===================*/
 /*=========BONUS STRUCT=========*/
