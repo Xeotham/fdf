@@ -11,7 +11,8 @@ SRCS = SRCS/main.c \
 	SRCS/fdf.c \
 	SRCS/color.c \
 	SRCS/get_map.c \
-	SRCS/line.c
+	SRCS/line.c \
+	SRCS/utils.c
 
 #=============== BONUS SOURCES ==============#
 BONUS = BONUS/main_bonus.c \

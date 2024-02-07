@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:12:11 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/02 15:24:48 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/05 21:19:23 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	check_z(char **line, t_fdf *fdf)
 				j++;
 			else
 			{
-				free(fdf->map);
+				free_map(fdf->map, fdf->map_height);
 				exit(EXIT_FAILURE); //error
 			}
 		}
@@ -119,12 +119,17 @@ t_map	**creat_map(t_fdf fdf)
 	t_map	**map;
 
 	i = 0;
-	map = ft_calloc(sizeof(t_map *), fdf.map_height + 1);
+	map = ft_calloc(sizeof(t_map *), fdf.map_height);
 	if (!map)
 		exit(EXIT_FAILURE);
 	while (i < fdf.map_height)
 	{
-		map[i] = ft_calloc(sizeof(t_map), fdf.map_length + 1);
+		map[i] = ft_calloc(sizeof(t_map), fdf.map_length);
+		if (!map[i])
+		{
+			free_map(map, i + 1);
+			exit(EXIT_FAILURE);
+		}
 		i++;
 	}
 	return (map);
