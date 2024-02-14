@@ -50,6 +50,11 @@ $(LIBFT) :
 bonus : $(OBJB) $(LIBFT)
 	$(CC) $(FLAGS) $(OBJB) $(LIBFT) $(MLX) -o $(BONUS_NAME)
 
+first : 
+	git clone git@github.com:codam-coding-college/MLX42.git
+	cmake  ./MLX42 -B ./MLX42/build
+	cmake --build ./MLX42/build -j4
+
 $(NAME) : $(OBJM) $(LIBFT)
 	$(CC) $(FLAGS) $(OBJM) $(LIBFT) $(MLX) -o $(NAME)
 	
@@ -59,7 +64,7 @@ clean :
 
 fclean :
 	@ $(MAKE) -C Libft fclean
-	rm -rf $(NAME) $(BONUS_NAME) $(OBJM) $(OBJB)
+	rm -rf $(NAME) $(BONUS_NAME) $(OBJM) $(OBJB) MLX42
 
 re : fclean all
 
