@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   get_map_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:12:11 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/08 16:33:07 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/14 15:17:37 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 #include <stdio.h>
 
 void	check_map_loop(t_fdf *fdf, int map_fd, char *line, int *line_count)

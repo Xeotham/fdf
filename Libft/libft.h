@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:38 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/01/24 11:24:58 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/09 19:06:15 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "GNL/get_next_line.h"
 # include <stdlib.h>
 # include <string.h>
+# include <stdio.h>
 # include <unistd.h>
 
 /*=================== MANDATORY PART ===================*/

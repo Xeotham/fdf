@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   flat_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 10:05:55 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/08 16:20:29 by mhaouas          ###   ########.fr       */
+/*   Created: 2024/02/13 16:35:04 by mhaouas           #+#    #+#             */
+/*   Updated: 2024/02/14 11:32:59 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include <stdio.h>
+#include "fdf_bonus.h"
 
-int	main(int argc, char **argv)
+void	make_flat_map(t_fdf *fdf)
 {
-	int		map_fd;
-	t_fdf	fdf;
+	set_bonus(fdf);
+	fdf->map_type = 'f';
+	mlx_delete_image(fdf->spec.mlx, fdf->spec.img);
+	make_img(fdf, fdf->win_width, fdf->win_height);
+	draw_map(fdf);
+}
 
-	if (argc != 2)
-		return (1);
-	map_fd = open(argv[1], O_RDONLY);
-	if (map_fd == -1)
-		exit(EXIT_FAILURE); //futur error message
-	check_map(argv[1], &fdf);
-	fdf.map = creat_map(fdf);
-	map_set(map_fd, &fdf);
-	fdf_start(fdf);
+void	make_iso_map(t_fdf *fdf)
+{
+	fdf->map_type = 'i';
+	reset_view(fdf);
 }

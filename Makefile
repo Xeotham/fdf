@@ -12,21 +12,21 @@ SRCS = SRCS/main.c \
 	SRCS/color.c \
 	SRCS/get_map.c \
 	SRCS/line.c \
-	SRCS/utils.c
+	SRCS/utils.c \
+	SRCS/hook.c
 
 #=============== BONUS SOURCES ==============#
 BONUS = BONUS/main_bonus.c \
-	BONUS/action_push_bonus.c \
-	BONUS/action_reverse_rotate_bonus.c \
-	BONUS/action_rotate_bonus.c \
-	BONUS/action_swap_bonus.c \
-	BONUS/check_bonus.c \
-	BONUS/error_bonus.c \
-	BONUS/link_list_bonus.c \
-	BONUS/move_bonus.c \
-	BONUS/push_swap_bonus.c \
-	BONUS/stack_utils_bonus.c
-
+	BONUS/fdf_bonus.c \
+	BONUS/color_bonus.c \
+	BONUS/get_map_bonus.c \
+	BONUS/line_bonus.c \
+	BONUS/utils_bonus.c \
+	BONUS/hook_bonus.c \
+	BONUS/scroll_bonus.c \
+	BONUS/format_map_bonus.c \
+	BONUS/flat_bonus.c
+	
 #============ TRANSFORM .c TO .o ============#
 #============== MANDATORY PART ==============#
 OBJM = $(SRCS:.c=.o)
@@ -48,7 +48,7 @@ $(LIBFT) :
 	$(CC) $(FLAGS) -c $< -o $@
 
 bonus : $(OBJB) $(LIBFT)
-	$(CC) $(FLAGS) $(OBJB) $(LIBFT) -o $(BONUS_NAME)
+	$(CC) $(FLAGS) $(OBJB) $(LIBFT) $(MLX) -o $(BONUS_NAME)
 
 $(NAME) : $(OBJM) $(LIBFT)
 	$(CC) $(FLAGS) $(OBJM) $(LIBFT) $(MLX) -o $(NAME)

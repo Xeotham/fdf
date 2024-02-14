@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:07:57 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/08 16:27:14 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/14 11:08:15 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	free_map(t_map **map, int y)
 {
@@ -55,4 +55,17 @@ t_map	**creat_map(t_fdf fdf)
 		i++;
 	}
 	return (map);
+}
+
+void	set_bonus(t_fdf *fdf)
+{
+	fdf->zoom = 0.0;
+	fdf->z_ratio = 1.0;
+	fdf->x_translate = 0.0;
+	fdf->y_translate = 0.0;
+	fdf->map_type = 'i';
+	fdf->rotate_type = Z_ROTATE;
+	fdf->rotate_z = 0.0;
+	fdf->rotate_x = 0.0;
+	fdf->rotate_y = 0.0;
 }
