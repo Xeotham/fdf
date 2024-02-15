@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:52:52 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/14 11:17:47 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:00:19 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ void	key_press_bis(mlx_key_data_t keydata, t_fdf *fdf)
 void	key_press(mlx_key_data_t keydata, void *param)
 {
 	t_fdf	*fdf;
-	
+
 	fdf = (t_fdf *)param;
-		printf("%d , %d , %d\n", keydata.key, keydata.action, keydata.modifier);	
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_RELEASE)
 		mlx_close_window(fdf->spec.mlx);
 	else if (keydata.key == MLX_KEY_LEFT_ALT && keydata.action == MLX_PRESS
@@ -56,7 +55,7 @@ void	close_window(void *param)
 	mlx_close_window(param);
 }
 
-void	resize_window(int32_t width, int32_t height , void *param)
+void	resize_window(int32_t width, int32_t height, void *param)
 {
 	t_fdf	*fdf;
 

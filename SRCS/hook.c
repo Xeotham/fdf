@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:52:52 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/08 13:38:04 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:48:42 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	close_window(void *param)
 	mlx_close_window(param);
 }
 
-void	resize_window(int32_t width, int32_t height , void *param)
+void	resize_window(int32_t width, int32_t height, void *param)
 {
 	t_fdf	*fdf;
 

@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:16:04 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/14 15:10:40 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:01:11 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	rotate_point(double *a, double *b, double rotate)
 {
 	double	tmp_a;
 	double	tmp_b;
-	
+
 	tmp_a = *a;
 	tmp_b = *b;
 	if (!rotate)
-		return;
+		return ;
 	*a = (tmp_a * cos(rotate)) - (tmp_b * sin(rotate));
 	*b = (tmp_a * sin(rotate)) + (tmp_b * cos(rotate));
 }
@@ -47,5 +47,5 @@ void	apply_rotate(double *x, double *y, double *z, t_fdf *fdf)
 void	apply_translation(double *x, double *y, t_fdf *fdf)
 {
 	(*x) += (fdf->win_width / 2) + fdf->x_translate;
-	(*y) += (fdf->win_height / 2) + fdf->y_translate; 
+	(*y) += (fdf->win_height / 2) + fdf->y_translate;
 }

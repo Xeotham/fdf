@@ -6,12 +6,12 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:03:08 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/13 16:17:06 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:51:43 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
-#include "stdio.h"
+
 int	check_hexa(char *color)
 {
 	int	i;
@@ -38,7 +38,7 @@ int	get_color(char *color)
 		color[i] = ft_tolower(color[i]);
 	if (!ft_strncmp(color, "0x", 2) && ft_strlen(color) > 8
 		&& check_hexa(color))
-		exit(EXIT_FAILURE); //error
+		exit(EXIT_FAILURE); // error
 	color_int = ft_atoi_base("0123456789abcdef", color + 2);
 	color_int = (color_int << 8) | 0xff;
 	return (color_int);

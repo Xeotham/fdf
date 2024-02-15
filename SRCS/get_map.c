@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:12:11 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/08 16:33:07 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:48:18 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	check_map_loop(t_fdf *fdf, int map_fd, char *line, int *line_count)
 		if (ft_count_word(line, ' ') != fdf->map_width)
 		{
 			free(line);
-			exit(EXIT_FAILURE); //error
-		}	
+			exit(EXIT_FAILURE); // error
+		}
 	}
 }
 
@@ -39,10 +39,10 @@ void	check_map(char *map_name, t_fdf *fdf)
 	line_count = 0;
 	map_fd = open(map_name, O_RDONLY);
 	if (map_fd < 0)
-		exit (EXIT_FAILURE); //error
+		exit(EXIT_FAILURE); // error
 	line = gnl_trim(map_fd);
 	if (!line)
-		exit(EXIT_FAILURE) ; //error
+		exit(EXIT_FAILURE); // error
 	fdf->map_width = ft_count_word(line, ' ');
 	check_map_loop(fdf, map_fd, line, &line_count);
 	close(map_fd);
@@ -63,12 +63,12 @@ void	check_z(char **line, t_fdf *fdf)
 			if (j != 0 && line[i][j] == ',')
 				break ;
 			if (((line[i][j] == '-' || line[i][j] == '+')
-				&& ft_isdigit(line[i][j + 1])) || ft_isdigit(line[i][j]))
+					&& ft_isdigit(line[i][j + 1])) || ft_isdigit(line[i][j]))
 				j++;
 			else
 			{
 				free_map(fdf->map, fdf->map_height);
-				exit(EXIT_FAILURE); //error
+				exit(EXIT_FAILURE); // error
 			}
 		}
 		i++;

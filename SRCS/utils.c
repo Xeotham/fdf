@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:07:57 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/08 16:27:14 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:48:50 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*gnl_trim(int map_fd)
 {
 	char	*tmp;
 	char	*line;
+
 	tmp = get_next_line(map_fd);
 	line = ft_strtrim(tmp, " \n");
 	free(tmp);

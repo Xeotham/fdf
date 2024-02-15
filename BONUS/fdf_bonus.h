@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:04:02 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/14 18:43:11 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:41:34 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,6 @@ void					apply_rotate(double *x, double *y, double *z,
 void					apply_translation(double *x, double *y, t_fdf *fdf);
 void					make_flat_map(t_fdf *fdf);
 void					make_iso_map(t_fdf *fdf);
-void	creat_cursor(t_fdf *fdf);
+void					creat_cursor(t_fdf *fdf);
 
 #endif

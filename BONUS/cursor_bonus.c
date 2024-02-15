@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:22:50 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/14 22:17:53 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:59:44 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,20 @@ void	creat_texture(t_fdf *fdf)
 	if (!fdf->cursor.z_scale.texture || !fdf->cursor.x_translate.texture
 		|| !fdf->cursor.y_translate.texture || !fdf->cursor.z_rotate.texture
 		|| !fdf->cursor.x_rotate.texture || !fdf->cursor.y_rotate.texture)
-		exit(EXIT_FAILURE); //error
+		exit(EXIT_FAILURE); // error
 }
 
 void	creat_cursor(t_fdf *fdf)
 {
+	t_cursor	*cursor;
+
+	cursor = &fdf->cursor;
 	creat_texture(fdf);
-	fdf->cursor.zoom.cursor = mlx_create_cursor(fdf->cursor.zoom.texture);
-	fdf->cursor.z_scale.cursor = mlx_create_cursor(fdf->cursor.z_scale.texture);
-	fdf->cursor.x_translate.cursor = mlx_create_cursor(fdf->cursor.x_translate.texture);
-	fdf->cursor.y_translate.cursor = mlx_create_cursor(fdf->cursor.y_translate.texture);
-	fdf->cursor.z_rotate.cursor = mlx_create_cursor(fdf->cursor.z_rotate.texture);
-	fdf->cursor.x_rotate.cursor = mlx_create_cursor(fdf->cursor.x_rotate.texture);
-	fdf->cursor.y_rotate.cursor = mlx_create_cursor(fdf->cursor.y_rotate.texture);
+	cursor->zoom.cursor = mlx_create_cursor(cursor->zoom.texture);
+	cursor->z_scale.cursor = mlx_create_cursor(cursor->z_scale.texture);
+	cursor->x_translate.cursor = mlx_create_cursor(cursor->x_translate.texture);
+	cursor->y_translate.cursor = mlx_create_cursor(cursor->y_translate.texture);
+	cursor->z_rotate.cursor = mlx_create_cursor(cursor->z_rotate.texture);
+	cursor->x_rotate.cursor = mlx_create_cursor(cursor->x_rotate.texture);
+	cursor->y_rotate.cursor = mlx_create_cursor(cursor->y_rotate.texture);
 }

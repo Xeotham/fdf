@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:07:40 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/14 15:09:15 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:55:19 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ t_map	convert_iso(t_map point, t_fdf *fdf)
 	apply_rotate(&tmp_x, &tmp_y, &tmp_z, fdf);
 	if (fdf->map_type == 'i')
 	{
-		tmp_x = tmp_x * cos(0.523599) * (fdf->ratio + fdf->zoom);
-		tmp_y = tmp_y * sin(0.523599) * (fdf->ratio + fdf->zoom) - (tmp_z * 0.1);
+		point.x = tmp_x * cos(0.523599) * (fdf->ratio + fdf->zoom);
+		point.y = (tmp_y * sin(0.523599) * (fdf->ratio + fdf->zoom))
+			- (tmp_z * 0.1);
 	}
 	else
 	{
@@ -94,8 +95,6 @@ t_map	convert_iso(t_map point, t_fdf *fdf)
 		tmp_y = tmp_y * (fdf->ratio + fdf->zoom);
 	}
 	apply_translation(&tmp_x, &tmp_y, fdf);
-	point.x = tmp_x;
-	point.y = tmp_y;
 	return (point);
 }
 
@@ -110,16 +109,12 @@ void	draw_map(t_fdf *fdf)
 		j = 0;
 		while (j < fdf->map_width)
 		{
-			if (j < fdf->map_width - 1 /*&& fdf->map_type == 'i'*/)
+			if (j < fdf->map_width - 1)
 				draw_line(*fdf, convert_iso(fdf->map[i][j], fdf),
 					convert_iso(fdf->map[i][j + 1], fdf));
-			/*else if (j < fdf->map_width - 1 && fdf->map_type == 'f')
-				draw_line(*fdf, fdf->map[i][j], fdf->map[i][j + 1]);*/
-			if (i < fdf->map_height - 1 /*&& fdf->map_type == 'i'*/)
+			if (i < fdf->map_height - 1)
 				draw_line(*fdf, convert_iso(fdf->map[i][j], fdf),
 					convert_iso(fdf->map[i + 1][j], fdf));
-			/*else if (i < fdf->map_height - 1 && fdf->map_type == 'i')
-				draw_line(*fdf, fdf->map[i][j], fdf->map[i + 1][j]);*/
 			j++;
 		}
 		i++;
