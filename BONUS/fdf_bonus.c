@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:34:43 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/14 11:21:14 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/15 10:16:51 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	fdf_start(t_fdf fdf)
 {
 	fdf.spec.mlx = mlx_init(fdf.win_width, fdf.win_height, "FdF", true);
 	fdf.spec.img = mlx_new_image(fdf.spec.mlx, fdf.win_width, fdf.win_height);
+	creat_cursor(&fdf);
 	make_img(&fdf, fdf.win_width, fdf.win_height);
 	set_bonus(&fdf);
 	draw_map(&fdf);

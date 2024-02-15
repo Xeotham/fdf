@@ -25,7 +25,8 @@ BONUS = BONUS/main_bonus.c \
 	BONUS/hook_bonus.c \
 	BONUS/scroll_bonus.c \
 	BONUS/format_map_bonus.c \
-	BONUS/flat_bonus.c
+	BONUS/flat_bonus.c \
+	BONUS/cursor_bonus.c
 	
 #============ TRANSFORM .c TO .o ============#
 #============== MANDATORY PART ==============#
@@ -64,7 +65,7 @@ clean :
 
 fclean :
 	@ $(MAKE) -C Libft fclean
-	rm -rf $(NAME) $(BONUS_NAME) $(OBJM) $(OBJB) MLX42
+	rm -rf $(NAME) $(BONUS_NAME) $(OBJM) $(OBJB)
 
 re : fclean all
 
