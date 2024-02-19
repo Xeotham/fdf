@@ -1,68 +1,67 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cputnbr.c                                       :+:      :+:    :+:   */
+/*   printf_nbr_print.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 00:21:20 by mhaouas           #+#    #+#             */
-/*   Updated: 2023/11/13 14:37:50 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/01/17 10:37:29 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include <unistd.h>
+#include "libft.h"
 
-static void	recurse(int nb, size_t *count)
+static void	recurse(int fd, int nb, size_t *count)
 {
 	char	nb2;
 
 	nb2 = 0;
 	if (nb > 9)
 	{
-		recurse(nb / 10, count);
+		recurse(fd, nb / 10, count);
 	}
 	nb2 = (nb % 10) + '0';
-	*count = *count + write(1, &nb2, 1);
+	*count = *count + write(fd, &nb2, 1);
 }
 
-int	ft_cputnbr(int nb)
+int	ft_cputnbr(int fd, int nb)
 {
 	size_t	count;
 
 	count = 0;
 	if (nb == -2147483648)
 	{
-		count += write(1, "-2147483648", 11);
+		count += write(fd, "-2147483648", 11);
 		return (count);
 	}
 	if (nb < 0)
 	{
 		nb = nb * -1;
-		count += write(1, "-", 1);
+		count += write(fd, "-", 1);
 	}
-	recurse(nb, &count);
+	recurse(fd, nb, &count);
 	return (count);
 }
 
-static void	urecurse(unsigned int nb, size_t *count)
+static void	urecurse(int fd, unsigned int nb, size_t *count)
 {
 	char	nb2;
 
 	nb2 = 0;
 	if (nb > 9)
 	{
-		urecurse(nb / 10, count);
+		urecurse(fd, nb / 10, count);
 	}
 	nb2 = (nb % 10) + '0';
-	*count = *count + write(1, &nb2, 1);
+	*count = *count + write(fd, &nb2, 1);
 }
 
-int	ft_cuputnbr(unsigned int nb)
+int	ft_cuputnbr(int fd, unsigned int nb)
 {
 	size_t	count;
 
 	count = 0;
-	urecurse(nb, &count);
+	urecurse(fd, nb, &count);
 	return (count);
 }

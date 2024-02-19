@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:16:04 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 09:56:19 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 10:41:19 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	apply_rotate(double *x, double *y, double *z, t_fdf *fdf)
 	if (fdf->map_type == 'i')
 	{
 		*x = tmp_x - tmp_y;
-		*y = (tmp_x + tmp_y) / 2 - tmp_z;
+		*y = (tmp_x + tmp_y) / 2 - (tmp_z * 0.1);
 	}
 }
 

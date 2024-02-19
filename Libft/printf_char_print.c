@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cputstr.c                                       :+:      :+:    :+:   */
+/*   printf_char_print.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 00:15:58 by mhaouas           #+#    #+#             */
-/*   Updated: 2023/11/13 14:37:41 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/01/17 10:35:27 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <unistd.h>
+#include "libft.h"
 
-int	ft_cputstr(char *str)
+int	ft_cputstr(int fd, char *str)
 {
 	size_t	count;
 	int		i;
@@ -21,20 +20,20 @@ int	ft_cputstr(char *str)
 	count = 0;
 	i = 0;
 	if (!str)
-		return ((count = write(1, "(null)", 6)));
+		return ((count = write(fd, "(null)", 6)));
 	while (str[i])
 	{
-		count += write(1, &str[i], 1);
+		count += write(fd, &str[i], 1);
 		i++;
 	}
 	return (count);
 }
 
-int	ft_cputchar(char c)
+int	ft_cputchar(int fd, char c)
 {
 	int	count;
 
 	count = 0;
-	count += write(1, &c, 1);
+	count += write(fd, &c, 1);
 	return (count);
 }

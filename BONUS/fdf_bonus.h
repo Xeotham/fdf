@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:04:02 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/15 16:41:34 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 15:46:05 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # define DEFAULT_COLOR 0xFFFFFFFF
 # define WIDTH 1080
 # define HEIGHT 720
+
+/*============= COLOR ===========*/
+# define RED "\033[31;1m"
+# define RESET_COLOR "\033[0m"
 
 typedef struct s_map
 {
@@ -91,15 +95,36 @@ enum					e_rotate_type
 	Y_ROTATE
 };
 
+enum	e_error_location
+{
+	MLX_ERROR,
+	MALLOC_ERROR,
+	OTHER_ERROR
+};
+
+enum	e_error_case
+{
+	TOO_MUCH_ARG,
+	FAILED_FD,
+	SPLIT_ERROR,
+	WRONG_MAP,
+	MALLOC_MAP,
+	INIT_FAIL,
+	IMAGE_FAIL,
+	CREAT_CURSOR,
+	IMG_2_WIN,
+	WRONG_COLOR
+};
+
 t_map					*get_map(int map_fd);
 void					check_map(char *map_name, t_fdf *fdf);
-void					map_set(int map_fd, t_fdf *fdf);
-int						get_color(char *color);
+void					map_set(char *map, t_fdf *fdf);
+int						get_color(char *color, t_fdf *fdf);
 void					fdf_start(t_fdf fdf);
 void					draw_line(t_fdf fdf, t_map a_point, t_map b_point);
 t_map					**creat_map(t_fdf fdf);
 t_map					convert_iso(t_map point, t_fdf *fdf);
-void					free_map(t_map **map, int y);
+void					free_map(t_map **map);
 void					print_line(void *img, t_map a_point, t_map b_point);
 void					draw_map(t_fdf *fdf);
 void					key_press(mlx_key_data_t keydata, void *param);
@@ -124,5 +149,9 @@ void					apply_translation(double *x, double *y, t_fdf *fdf);
 void					make_flat_map(t_fdf *fdf);
 void					make_iso_map(t_fdf *fdf);
 void					creat_cursor(t_fdf *fdf);
+void					error_handle(int location, int type, t_fdf *fdf);
+int	change_color(char **xs, char **xs_all, t_fdf *fdf);
+void	free_texture(int error, t_fdf *fdf);
+void	free_cursor(int error, t_fdf *fdf);
 
 #endif

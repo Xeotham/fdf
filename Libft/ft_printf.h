@@ -15,13 +15,13 @@
 
 # include <stdarg.h>
 # include <string.h>
-
+int	ft_printf_fd(int fd, const char *str, ...);
 int	ft_printf(const char *str, ...);
-int	ft_cputstr(char *str);
-int	ft_cputnbr(int nb);
-int	ft_cuputnbr(unsigned int nb);
-int	ft_cputchar(char c);
-int	ft_convert_to_hex(unsigned int nb, char type);
-int	ft_point_to_hex(unsigned long long nb);
+int	ft_cputstr(int fd, char *str);
+int	ft_cputnbr(int fd, int nb);
+int	ft_cuputnbr(int fd, unsigned int nb);
+int	ft_cputchar(int fd, char c);
+int	ft_convert_to_hex(int fd, unsigned int nb, char type);
+int	ft_point_to_hex(int fd, unsigned long long nb);
 
 #endif

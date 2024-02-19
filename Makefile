@@ -26,7 +26,8 @@ BONUS = BONUS/main_bonus.c \
 	BONUS/scroll_bonus.c \
 	BONUS/format_map_bonus.c \
 	BONUS/flat_bonus.c \
-	BONUS/cursor_bonus.c
+	BONUS/cursor_bonus.c \
+	BONUS/error_bonus.c
 	
 #============ TRANSFORM .c TO .o ============#
 #============== MANDATORY PART ==============#
@@ -49,7 +50,7 @@ $(LIBFT) :
 	$(CC) $(FLAGS) -c $< -o $@
 
 bonus : $(OBJB) $(LIBFT)
-	$(CC) $(FLAGS) $(OBJB) $(LIBFT) $(MLX) -o $(BONUS_NAME)
+	$(CC) $(FLAGS) $(OBJB) $(LIBFT) $(MLX) -o $(BONUS_NAME) -fsanitize=address
 
 first : 
 	git clone git@github.com:codam-coding-college/MLX42.git
@@ -57,7 +58,7 @@ first :
 	cmake --build ./MLX42/build -j4
 
 $(NAME) : $(OBJM) $(LIBFT)
-	$(CC) $(FLAGS) $(OBJM) $(LIBFT) $(MLX) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJM) $(LIBFT) $(MLX) -o $(NAME) -fsanitize=address
 	
 clean :
 	@ $(MAKE) -C Libft clean

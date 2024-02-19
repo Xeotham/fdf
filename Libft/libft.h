@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include "GNL/get_next_line.h"
+# include "ft_printf.h"
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>

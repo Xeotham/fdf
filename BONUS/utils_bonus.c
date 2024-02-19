@@ -6,18 +6,18 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:07:57 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/15 16:51:12 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 13:42:25 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-void	free_map(t_map **map, int y)
+void	free_map(t_map **map)
 {
 	int	i;
 
 	i = 0;
-	while (i < y)
+	while (map[i])
 	{
 		free(map[i]);
 		i++;
@@ -42,16 +42,16 @@ t_map	**creat_map(t_fdf fdf)
 	t_map	**map;
 
 	i = 0;
-	map = ft_calloc(sizeof(t_map *), fdf.map_height);
+	map = ft_calloc(sizeof(t_map *), fdf.map_height + 1);
 	if (!map)
-		exit(EXIT_FAILURE);
+		error_handle(MALLOC_ERROR, MALLOC_MAP, NULL);
 	while (i < fdf.map_height)
 	{
 		map[i] = ft_calloc(sizeof(t_map), fdf.map_width);
 		if (!map[i])
 		{
-			free_map(map, i + 1);
-			exit(EXIT_FAILURE);
+			free_map(map);
+			error_handle(MALLOC_ERROR, MALLOC_MAP, NULL);
 		}
 		i++;
 	}
