@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:07:40 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/15 16:55:19 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 09:58:49 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,16 @@ t_map	convert_iso(t_map point, t_fdf *fdf)
 	else
 		fdf->ratio = ((fdf->win_height) / (fdf->map_height));
 	apply_rotate(&tmp_x, &tmp_y, &tmp_z, fdf);
+	tmp_x = tmp_x * (fdf->ratio + fdf->zoom);
+	tmp_y = tmp_y * (fdf->ratio + fdf->zoom);
 	if (fdf->map_type == 'i')
 	{
-		point.x = tmp_x * cos(0.523599) * (fdf->ratio + fdf->zoom);
-		point.y = (tmp_y * sin(0.523599) * (fdf->ratio + fdf->zoom))
-			- (tmp_z * 0.1);
-	}
-	else
-	{
-		tmp_x = tmp_x * (fdf->ratio + fdf->zoom);
-		tmp_y = tmp_y * (fdf->ratio + fdf->zoom);
+		tmp_x = tmp_x * cos(0.523599);
+		tmp_y = (tmp_y * sin(0.523599)) - (tmp_z * 0.1);
 	}
 	apply_translation(&tmp_x, &tmp_y, fdf);
+	point.x = tmp_x;
+	point.y = tmp_y;
 	return (point);
 }
 
