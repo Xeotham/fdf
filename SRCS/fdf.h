@@ -6,16 +6,19 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:04:02 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 19:54:06 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 20:12:17 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+/*============= INCLUDE ===========*/
 
 # include "../Libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
+
+/*============= DEFINE FDF ===========*/
 
 # define DEFAULT_COLOR 0xFFFFFFFF
 # define WIDTH 1080
@@ -25,6 +28,10 @@
 # define RED "\033[31;1m"
 # define RESET_COLOR "\033[0m"
 
+/*============= STRUCT ===========*/
+
+/*============= MAP ===========*/
+
 typedef struct s_map
 {
 	int			x;
@@ -33,11 +40,15 @@ typedef struct s_map
 	int			color;
 }				t_map;
 
+/*============= MLX INFO ===========*/
+
 typedef struct s_info
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 }				t_info;
+
+/*============= CORE STRUCT ===========*/
 
 typedef struct s_fdf
 {
@@ -49,6 +60,8 @@ typedef struct s_fdf
 	int			map_height;
 }				t_fdf;
 
+/*============= LINE STRUCT ===========*/
+
 typedef struct s_line
 {
 	int			a;
@@ -59,6 +72,8 @@ typedef struct s_line
 	int32_t		win_width;
 	int32_t		win_height;
 }				t_line;
+
+/*============= ERROR ===========*/
 
 enum			e_error_location
 {
@@ -80,6 +95,7 @@ enum			e_error_case
 	IMAGE_FAIL,
 	IMG_2_WIN
 };
+/*============= PROTOTYPE ===========*/
 
 t_map			*get_map(int map_fd);
 void			check_map(char *map_name, t_fdf *fdf);
