@@ -5,6 +5,14 @@
 		"fdf_bonus.h": "c",
 		"stdio.h": "c",
 		"libft.h": "c",
-		"get_next_line.h": "c"
+		"get_next_line.h": "c",
+		"array": "c",
+		"compare": "c",
+		"functional": "c",
+		"ostream": "c",
+		"ranges": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"utility": "c"
 	}
 }

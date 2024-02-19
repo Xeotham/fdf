@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:34:43 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 15:27:16 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 19:44:01 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,17 @@ void	make_img(t_fdf *fdf, int width, int height)
 
 void	fdf_start(t_fdf fdf)
 {
-	fdf.spec.mlx = mlx_init(fdf.win_width, fdf.win_height, "FdF", true);
+	fdf.spec.mlx = mlx_init(fdf.win_width, fdf.win_height, "FdF_bonus", true);
 	if (!fdf.spec.mlx)
 		error_handle(MLX_ERROR, INIT_FAIL, &fdf);
 	make_img(&fdf, fdf.win_width, fdf.win_height);
-	fdf.spec.img = mlx_new_image(fdf.spec.mlx, fdf.win_width, fdf.win_height);
 	creat_cursor(&fdf);
 	set_bonus(&fdf);
 	draw_map(&fdf);
 	mlx_to_do(fdf);
 	mlx_loop(fdf.spec.mlx);
+	free_cursor(7, &fdf);
+	mlx_delete_image(fdf.spec.mlx, fdf.spec.img);
 	mlx_terminate(fdf.spec.mlx);
 	free_map(fdf.map);
 }

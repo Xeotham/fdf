@@ -6,25 +6,20 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:05:55 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/08 16:20:29 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 19:43:20 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
-	int		map_fd;
 	t_fdf	fdf;
 
 	if (argc != 2)
-		return (1);
-	map_fd = open(argv[1], O_RDONLY);
-	if (map_fd == -1)
-		exit(EXIT_FAILURE); //futur error message
+		error_handle(OTHER_ERROR, TOO_MUCH_ARG, NULL);
 	check_map(argv[1], &fdf);
 	fdf.map = creat_map(fdf);
-	map_set(map_fd, &fdf);
+	map_set(argv[1], &fdf);
 	fdf_start(fdf);
 }

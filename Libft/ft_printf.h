@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:32:40 by mhaouas           #+#    #+#             */
-/*   Updated: 2023/11/13 14:37:22 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 18:58:36 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include <string.h>
+
 int	ft_printf_fd(int fd, const char *str, ...);
 int	ft_printf(const char *str, ...);
 int	ft_cputstr(int fd, char *str);

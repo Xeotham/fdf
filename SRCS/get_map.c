@@ -6,12 +6,11 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:12:11 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/15 16:48:18 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 19:46:11 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void	check_map_loop(t_fdf *fdf, int map_fd, char *line, int *line_count)
 {
@@ -25,7 +24,7 @@ void	check_map_loop(t_fdf *fdf, int map_fd, char *line, int *line_count)
 		if (ft_count_word(line, ' ') != fdf->map_width)
 		{
 			free(line);
-			exit(EXIT_FAILURE); // error
+			error_handle(OTHER_ERROR, WRONG_MAP, fdf);
 		}
 	}
 }
@@ -39,10 +38,10 @@ void	check_map(char *map_name, t_fdf *fdf)
 	line_count = 0;
 	map_fd = open(map_name, O_RDONLY);
 	if (map_fd < 0)
-		exit(EXIT_FAILURE); // error
+		error_handle(OTHER_ERROR, FAILED_FD, NULL);
 	line = gnl_trim(map_fd);
 	if (!line)
-		exit(EXIT_FAILURE); // error
+		error_handle(OTHER_ERROR, WRONG_MAP, NULL);
 	fdf->map_width = ft_count_word(line, ' ');
 	check_map_loop(fdf, map_fd, line, &line_count);
 	close(map_fd);
@@ -67,8 +66,8 @@ void	check_z(char **line, t_fdf *fdf)
 				j++;
 			else
 			{
-				free_map(fdf->map, fdf->map_height);
-				exit(EXIT_FAILURE); // error
+				free_map(fdf->map);
+				error_handle(OTHER_ERROR, WRONG_MAP, fdf);
 			}
 		}
 		i++;
@@ -79,20 +78,13 @@ void	set_args(int y, char **xs, t_fdf *fdf)
 {
 	int		i;
 	int		color;
-	char	**if_color;
 
 	i = 0;
 	while (i < fdf->map_width)
 	{
 		color = DEFAULT_COLOR;
 		if (ft_count_word(xs[i], ',') == 2)
-		{
-			if_color = ft_split(xs[i], ',');
-			free(xs[i]);
-			xs[i] = if_color[0];
-			color = get_color(if_color[1]);
-			free(if_color[1]);
-		}
+			color = change_color(&xs[i], xs, fdf);
 		fdf->map[y][i].y = y;
 		fdf->map[y][i].x = i;
 		fdf->map[y][i].z = ft_atoi(xs[i]);
@@ -101,24 +93,27 @@ void	set_args(int y, char **xs, t_fdf *fdf)
 	}
 }
 
-void	map_set(int map_fd, t_fdf *fdf)
+void	map_set(char *map, t_fdf *fdf)
 {
 	int		i;
+	int		map_fd;
 	char	*line;
-	char	*tmp;
 	char	**args;
 
 	i = 0;
 	fdf->win_height = HEIGHT;
 	fdf->win_width = WIDTH;
+	map_fd = open(map, O_RDONLY);
+	if (map_fd == -1)
+		error_handle(OTHER_ERROR, FAILED_FD, fdf);
 	while (i < fdf->map_height)
 	{
-		tmp = get_next_line(map_fd);
-		line = ft_strtrim(tmp, " \n");
+		line = gnl_trim(map_fd);
 		args = ft_split(line, ' ');
+		if (!args || !*args)
+			error_handle(MALLOC_ERROR, SPLIT_ERROR, fdf);
 		check_z(args, fdf);
 		set_args(i, args, fdf);
-		free(tmp);
 		free(line);
 		ft_free_2d_array(args);
 		i++;

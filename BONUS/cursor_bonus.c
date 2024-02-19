@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:22:50 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 14:47:45 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 19:50:29 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	free_texture(int error, t_fdf *fdf)
 		mlx_delete_texture(fdf->cursor.x_rotate.texture);
 	if (error <= 7)
 		mlx_delete_texture(fdf->cursor.y_rotate.texture);
-	error_handle(MLX_ERROR, CREAT_CURSOR, fdf);
+	if (error != 7)
+		error_handle(MLX_ERROR, CREAT_CURSOR, fdf);
 }
 
 void	free_cursor(int error, t_fdf *fdf)

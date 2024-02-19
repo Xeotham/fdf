@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:04:02 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/15 16:48:30 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 19:54:06 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # define DEFAULT_COLOR 0xFFFFFFFF
 # define WIDTH 1080
 # define HEIGHT 720
+
+/*============= COLOR ===========*/
+# define RED "\033[31;1m"
+# define RESET_COLOR "\033[0m"
 
 typedef struct s_map
 {
@@ -56,15 +60,36 @@ typedef struct s_line
 	int32_t		win_height;
 }				t_line;
 
+enum			e_error_location
+{
+	MLX_ERROR,
+	MALLOC_ERROR,
+	OTHER_ERROR
+};
+
+enum			e_error_case
+{
+	TOO_MUCH_ARG,
+	WRONG_MAP,
+	WRONG_COLOR,
+	FAILED_FD,
+	SPLIT_ERROR,
+	STRDUP_ERROR,
+	MALLOC_MAP,
+	INIT_FAIL,
+	IMAGE_FAIL,
+	IMG_2_WIN
+};
+
 t_map			*get_map(int map_fd);
 void			check_map(char *map_name, t_fdf *fdf);
-void			map_set(int map_fd, t_fdf *fdf);
-int				get_color(char *color);
+void			map_set(char *map, t_fdf *fdf);
+int				get_color(char *color, char **xs_all, t_fdf *fdf);
 void			fdf_start(t_fdf fdf);
 void			draw_line(t_fdf fdf, t_map a_point, t_map b_point);
 t_map			**creat_map(t_fdf fdf);
 t_map			convert_iso(t_map point, t_fdf fdf);
-void			free_map(t_map **map, int y);
+void			free_map(t_map **map);
 void			print_line(void *img, t_map a_point, t_map b_point);
 void			draw_map(t_fdf fdf);
 void			key_press(mlx_key_data_t keydata, void *param);
@@ -72,5 +97,7 @@ void			make_img(t_fdf *fdf, int width, int height);
 void			close_window(void *param);
 void			resize_window(int32_t width, int32_t height, void *param);
 char			*gnl_trim(int map_fd);
+void			error_handle(int location, int type, t_fdf *fdf);
+int				change_color(char **xs, char **xs_all, t_fdf *fdf);
 
 #endif

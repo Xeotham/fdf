@@ -13,7 +13,8 @@ SRCS = SRCS/main.c \
 	SRCS/get_map.c \
 	SRCS/line.c \
 	SRCS/utils.c \
-	SRCS/hook.c
+	SRCS/hook.c \
+	SRCS/error.c
 
 #=============== BONUS SOURCES ==============#
 BONUS = BONUS/main_bonus.c \
@@ -50,7 +51,7 @@ $(LIBFT) :
 	$(CC) $(FLAGS) -c $< -o $@
 
 bonus : $(OBJB) $(LIBFT)
-	$(CC) $(FLAGS) $(OBJB) $(LIBFT) $(MLX) -o $(BONUS_NAME) -fsanitize=address
+	$(CC) $(FLAGS) $(OBJB) $(LIBFT) $(MLX) -o $(BONUS_NAME)
 
 first : 
 	git clone git@github.com:codam-coding-college/MLX42.git
@@ -58,7 +59,7 @@ first :
 	cmake --build ./MLX42/build -j4
 
 $(NAME) : $(OBJM) $(LIBFT)
-	$(CC) $(FLAGS) $(OBJM) $(LIBFT) $(MLX) -o $(NAME) -fsanitize=address
+	$(CC) $(FLAGS) $(OBJM) $(LIBFT) $(MLX) -o $(NAME)
 	
 clean :
 	@ $(MAKE) -C Libft clean

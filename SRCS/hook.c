@@ -6,12 +6,11 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:52:52 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/15 16:48:42 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 19:37:51 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void	key_press(mlx_key_data_t keydata, void *param)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_bonus.c                                      :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 10:44:58 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 18:56:35 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/19 19:23:23 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "fdf.h"
 
 char	*mlx_error(int type, t_fdf *fdf)
 {
@@ -22,15 +22,8 @@ char	*mlx_error(int type, t_fdf *fdf)
 		mlx_terminate(fdf->spec.mlx);
 		return ("Failed to creat an image");
 	}
-	else if (type == CREAT_CURSOR)
-	{
-		mlx_delete_image(fdf->spec.mlx, fdf->spec.img);
-		mlx_terminate(fdf->spec.mlx);
-		return ("Failed to creat cursor");
-	}
 	else if (type == IMG_2_WIN)
 	{
-		free_cursor(7, fdf);
 		mlx_delete_image(fdf->spec.mlx, fdf->spec.img);
 		mlx_terminate(fdf->spec.mlx);
 		return ("Failed to put image to window");
