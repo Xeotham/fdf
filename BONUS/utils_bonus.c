@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:07:57 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 13:42:25 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:32:11 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,18 @@ void	set_bonus(t_fdf *fdf)
 	fdf->rotate_z = 0.0;
 	fdf->rotate_x = 0.0;
 	fdf->rotate_y = 0.0;
+}
+
+void	free_gnl(int map_fd)
+{
+	int		i;
+	char	*gnl;
+
+	i = 0;
+	gnl = ft_calloc(1, 1);
+	while (gnl)
+	{
+		free(gnl);
+		gnl = get_next_line(map_fd);
+	}
 }

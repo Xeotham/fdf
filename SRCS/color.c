@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:03:08 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 19:45:02 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:28:40 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	get_color(char *color, char **xs_all, t_fdf *fdf)
 	while (color[i++])
 		color[i] = ft_tolower(color[i]);
 	if (!ft_strncmp(color, "0x", 2) && ft_strlen(color) > 8
-		&& check_hexa(color))
+		&& !check_hexa(color))
 	{
 		free_map(fdf->map);
 		ft_free_2d_array(xs_all);

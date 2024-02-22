@@ -6,16 +6,20 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:04:02 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 18:57:05 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:32:04 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_BONUS_H
 # define FDF_BONUS_H
 
+/*============= INCLUDE ===========*/
+
 # include "../Libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
+
+/*============= DEFINE FDF ===========*/
 
 # define DEFAULT_COLOR 0xFFFFFFFF
 # define WIDTH 1080
@@ -25,6 +29,10 @@
 # define RED "\033[31;1m"
 # define RESET_COLOR "\033[0m"
 
+/*============= STRUCT ===========*/
+
+/*============= MAP ===========*/
+
 typedef struct s_map
 {
 	int					x;
@@ -33,17 +41,23 @@ typedef struct s_map
 	int					color;
 }						t_map;
 
+/*============= MLX INFO ===========*/
+
 typedef struct s_info
 {
 	mlx_t				*mlx;
 	mlx_image_t			*img;
 }						t_info;
 
+/*============= CURSOR UTILS STRUCT ===========*/
+
 typedef struct s_sub_cursor
 {
 	mlx_win_cursor_t	*cursor;
 	mlx_texture_t		*texture;
 }						t_sub_cursor;
+
+/*============= CURSOR STRUCT ===========*/
 
 typedef struct s_cursor
 {
@@ -55,6 +69,8 @@ typedef struct s_cursor
 	t_sub_cursor		y_translate;
 	t_sub_cursor		z_scale;
 }						t_cursor;
+
+/*============= CORE STRUCT ===========*/
 
 typedef struct s_fdf
 {
@@ -77,6 +93,8 @@ typedef struct s_fdf
 	double				rotate_y;
 }						t_fdf;
 
+/*============= LINE STRUCT ===========*/
+
 typedef struct s_line
 {
 	int					a;
@@ -88,12 +106,16 @@ typedef struct s_line
 	int32_t				win_height;
 }						t_line;
 
+/*============= ROTATE AXIS ===========*/
+
 enum					e_rotate_type
 {
 	Z_ROTATE,
 	X_ROTATE,
 	Y_ROTATE
 };
+
+/*============= ERROR ===========*/
 
 enum					e_error_location
 {
@@ -116,6 +138,8 @@ enum					e_error_case
 	CREAT_CURSOR,
 	IMG_2_WIN
 };
+
+/*============= PROTOTYP ===========*/
 
 t_map					*get_map(int map_fd);
 void					check_map(char *map_name, t_fdf *fdf);
@@ -154,5 +178,6 @@ void					error_handle(int location, int type, t_fdf *fdf);
 int						change_color(char **xs, char **xs_all, t_fdf *fdf);
 void					free_texture(int error, t_fdf *fdf);
 void					free_cursor(int error, t_fdf *fdf);
+void					free_gnl(int map_fd);
 
 #endif

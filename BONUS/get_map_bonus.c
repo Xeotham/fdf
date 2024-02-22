@@ -6,17 +6,57 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:12:11 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 18:36:05 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/21 20:46:06 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
+void	check_z(int map_fd, char *line, char **z_array, t_fdf *fdf)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (z_array[i])
+	{
+		j = 0;
+		while (z_array[i][j])
+		{
+			if (j != 0 && z_array[i][j] == ',')
+				break ;
+			if (((z_array[i][j] == '-' || z_array[i][j] == '+')
+					&& ft_isdigit(z_array[i][j + 1])) || ft_isdigit(z_array[i][j]))
+				j++;
+			else
+			{
+				ft_free_2d_array(z_array);
+				free(line);
+				free_gnl(map_fd);
+				close(map_fd);
+				error_handle(OTHER_ERROR, WRONG_MAP, fdf);
+			}
+		}
+		i++;
+	}
+}
+
 void	check_map_loop(t_fdf *fdf, int map_fd, char *line, int *line_count)
 {
+	char	**args;
+
 	while (line)
 	{
 		(*line_count)++;
+		args = ft_split(line, ' ');
+		if (!args || !*args)
+		{
+			free(line);
+			free_gnl(map_fd);
+			close(map_fd);
+			error_handle(MALLOC_ERROR, SPLIT_ERROR, fdf);
+		}
+		check_z(map_fd, line, args, fdf);
 		free(line);
 		line = gnl_trim(map_fd);
 		if (!line)
@@ -48,36 +88,10 @@ void	check_map(char *map_name, t_fdf *fdf)
 	fdf->map_height = line_count;
 }
 
-void	check_z(char **line, t_fdf *fdf)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (line[i])
-	{
-		j = 0;
-		while (line[i][j])
-		{
-			if (j != 0 && line[i][j] == ',')
-				break ;
-			if (((line[i][j] == '-' || line[i][j] == '+')
-					&& ft_isdigit(line[i][j + 1])) || ft_isdigit(line[i][j]))
-				j++;
-			else
-			{
-				free_map(fdf->map);
-				error_handle(OTHER_ERROR, WRONG_MAP, fdf);
-			}
-		}
-		i++;
-	}
-}
-
 void	set_args(int y, char **xs, t_fdf *fdf)
 {
-	int		i;
-	int		color;
+	int	i;
+	int	color;
 
 	i = 0;
 	while (i < fdf->map_width)
@@ -111,8 +125,12 @@ void	map_set(char *map, t_fdf *fdf)
 		line = gnl_trim(map_fd);
 		args = ft_split(line, ' ');
 		if (!args || !*args)
+		{
+			free(line);
+			free_gnl(map_fd);
+			close(map_fd);
 			error_handle(MALLOC_ERROR, SPLIT_ERROR, fdf);
-		check_z(args, fdf);
+		}
 		set_args(i, args, fdf);
 		free(line);
 		ft_free_2d_array(args);

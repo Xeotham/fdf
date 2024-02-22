@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:07:57 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 19:51:47 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:20:09 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,18 @@ t_map	**creat_map(t_fdf fdf)
 		i++;
 	}
 	return (map);
+}
+
+void	free_gnl(int map_fd)
+{
+	int		i;
+	char	*gnl;
+
+	i = 0;
+	gnl = ft_calloc(1, 1);
+	while (gnl)
+	{
+		free(gnl);
+		gnl = get_next_line(map_fd);
+	}
 }

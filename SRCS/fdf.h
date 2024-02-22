@@ -6,12 +6,13 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:04:02 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 20:12:17 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:20:44 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
 /*============= INCLUDE ===========*/
 
 # include "../Libft/libft.h"
@@ -95,7 +96,7 @@ enum			e_error_case
 	IMAGE_FAIL,
 	IMG_2_WIN
 };
-/*============= PROTOTYPE ===========*/
+/*============= PROTOTYP ===========*/
 
 t_map			*get_map(int map_fd);
 void			check_map(char *map_name, t_fdf *fdf);
@@ -115,5 +116,6 @@ void			resize_window(int32_t width, int32_t height, void *param);
 char			*gnl_trim(int map_fd);
 void			error_handle(int location, int type, t_fdf *fdf);
 int				change_color(char **xs, char **xs_all, t_fdf *fdf);
+void	free_gnl(int map_fd);
 
 #endif
