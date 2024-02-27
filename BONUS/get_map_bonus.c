@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:12:11 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/21 20:46:06 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/23 15:46:06 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_z(int map_fd, char *line, char **z_array, t_fdf *fdf)
 			if (j != 0 && z_array[i][j] == ',')
 				break ;
 			if (((z_array[i][j] == '-' || z_array[i][j] == '+')
-					&& ft_isdigit(z_array[i][j + 1])) || ft_isdigit(z_array[i][j]))
+				&& ft_isdigit(z_array[i][j + 1])) || ft_isdigit(z_array[i][j]))
 				j++;
 			else
 			{
@@ -57,6 +57,7 @@ void	check_map_loop(t_fdf *fdf, int map_fd, char *line, int *line_count)
 			error_handle(MALLOC_ERROR, SPLIT_ERROR, fdf);
 		}
 		check_z(map_fd, line, args, fdf);
+		ft_free_2d_array(args);
 		free(line);
 		line = gnl_trim(map_fd);
 		if (!line)
@@ -115,8 +116,6 @@ void	map_set(char *map, t_fdf *fdf)
 	char	**args;
 
 	i = 0;
-	fdf->win_height = HEIGHT;
-	fdf->win_width = WIDTH;
 	map_fd = open(map, O_RDONLY);
 	if (map_fd == -1)
 		error_handle(OTHER_ERROR, FAILED_FD, fdf);
@@ -127,7 +126,6 @@ void	map_set(char *map, t_fdf *fdf)
 		if (!args || !*args)
 		{
 			free(line);
-			free_gnl(map_fd);
 			close(map_fd);
 			error_handle(MALLOC_ERROR, SPLIT_ERROR, fdf);
 		}

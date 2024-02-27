@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:22:50 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 19:50:29 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/26 10:02:31 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	free_texture(int error, t_fdf *fdf)
 {
-	if (error <= 1)
+	if (error >= 1)
 		mlx_delete_texture(fdf->cursor.zoom.texture);
-	if (error <= 2)
+	if (error >= 2)
 		mlx_delete_texture(fdf->cursor.z_scale.texture);
-	if (error <= 3)
+	if (error >= 3)
 		mlx_delete_texture(fdf->cursor.x_translate.texture);
-	if (error <= 4)
+	if (error >= 4)
 		mlx_delete_texture(fdf->cursor.y_translate.texture);
-	if (error <= 5)
+	if (error >= 5)
 		mlx_delete_texture(fdf->cursor.z_rotate.texture);
-	if (error <= 6)
+	if (error >= 6)
 		mlx_delete_texture(fdf->cursor.x_rotate.texture);
-	if (error <= 7)
+	if (error >= 7)
 		mlx_delete_texture(fdf->cursor.y_rotate.texture);
 	if (error != 7)
 		error_handle(MLX_ERROR, CREAT_CURSOR, fdf);
@@ -34,21 +34,23 @@ void	free_texture(int error, t_fdf *fdf)
 
 void	free_cursor(int error, t_fdf *fdf)
 {
-	if (error <= 1)
+	if (error >= 1)
 		mlx_destroy_cursor(fdf->cursor.zoom.cursor);
-	if (error <= 2)
+	if (error >= 2)
 		mlx_destroy_cursor(fdf->cursor.z_scale.cursor);
-	if (error <= 3)
+	if (error >= 3)
 		mlx_destroy_cursor(fdf->cursor.x_translate.cursor);
-	if (error <= 4)
+	if (error >= 4)
 		mlx_destroy_cursor(fdf->cursor.y_translate.cursor);
-	if (error <= 5)
+	if (error >= 5)
 		mlx_destroy_cursor(fdf->cursor.z_rotate.cursor);
-	if (error <= 6)
+	if (error >= 6)
 		mlx_destroy_cursor(fdf->cursor.x_rotate.cursor);
-	if (error <= 7)
+	if (error >= 7)
 		mlx_destroy_cursor(fdf->cursor.y_rotate.cursor);
-	free_texture(error, fdf);
+	free_texture(7, fdf);
+	if (error != 7)
+		error_handle(MLX_ERROR, CREAT_CURSOR, fdf);
 }
 
 void	creat_texture(t_fdf *fdf)

@@ -6,7 +6,7 @@
 /*   By: mhaouas <mhaouas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:05:55 by mhaouas           #+#    #+#             */
-/*   Updated: 2024/02/19 15:27:00 by mhaouas          ###   ########.fr       */
+/*   Updated: 2024/02/22 18:11:42 by mhaouas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main(int argc, char **argv)
 		error_handle(OTHER_ERROR, TOO_MUCH_ARG, NULL);
 	check_map(argv[1], &fdf);
 	fdf.map = creat_map(fdf);
+	fdf.win_height = HEIGHT;
+	fdf.win_width = WIDTH;
 	map_set(argv[1], &fdf);
 	fdf_start(fdf);
 }
